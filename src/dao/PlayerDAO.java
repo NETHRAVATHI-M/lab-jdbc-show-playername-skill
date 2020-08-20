@@ -3,6 +3,7 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Player;
@@ -10,6 +11,7 @@ import model.Skill;
 import utility.ConnectionManager;
 
 public class PlayerDAO{
+	public List<Player>players = new ArrayList<Player>();
 	public List< Player > getAllPlayers() {
 		ConnectionManager con = new ConnectionManager();
 		try {
@@ -24,6 +26,8 @@ public class PlayerDAO{
 				String skillName = rs.getString("skillName");
 				Skill s = new Skill(Sid,skillName);
 				Player p = new Player(id,name,Country,s);
+				players.add(p);
+				return players;
 				
 			}
 			
